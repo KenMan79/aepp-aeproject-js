@@ -138,6 +138,8 @@ async function run (option) {
     let dockerImage = option.windows ? nodeConfiguration.dockerServiceNodeName : nodeConfiguration.dockerImage;
     dockerImage = nodeConfiguration.dockerServiceNodeName;
 
+    console.log('[DEBUG] docker image:', dockerImage);
+
     try {
         let running = await waitForContainer(dockerImage);
         if (option.stop) {
@@ -207,11 +209,11 @@ async function run (option) {
             }
 
             process.stdout.write(".");
-            utils.sleep(1000);
+            await utils.timeout(1000);
 
             // prevent infinity loop
             counter++;
-            if (counter >= MAX_SECONDS_TO_RUN_NODE) {
+            if (counter >= 45) {
                 // if node is started and error message is another,
                 // we should stop docker
 

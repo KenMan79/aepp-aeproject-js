@@ -283,6 +283,8 @@ async function waitForContainer(dockerImage, options) {
             })
         }
 
+        console.log('[DEBUG] wait For Container:', res);
+
         return running;
     } catch (error) {
         if (error.stderr) {

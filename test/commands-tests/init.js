@@ -138,7 +138,7 @@ const executeAndPassInput = async (cli, command, args = [], options = {}) => {
                 
             // }, 1000)
 
-            test();
+            // test();
         }
     });
 
@@ -149,6 +149,14 @@ const executeAndPassInput = async (cli, command, args = [], options = {}) => {
     function test () {
         child.stdin.write('y\n');
     }
+    let x = 2000;
+    let y = setTimeout(function () {
+        child.stdin.write('y\n');
+        x += 2000
+        if (x > 20000) {
+            clearTimeout(y)
+        }
+    }, x)
 
     // child.stdin.end();
 

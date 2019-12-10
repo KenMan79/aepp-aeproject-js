@@ -130,19 +130,25 @@ const executeAndPassInput = async (cli, command, args = [], options = {}) => {
         i++
 
         if (data.includes('Do you want to overwrite')) {
-            child.stdin.write('y\n');
+            // child.stdin.write('y\n');
             // child.stdin.write('');
             
             // setTimeout(function () {
             //     child.stdin.write('y\n');
                 
             // }, 1000)
+
+            test();
         }
     });
 
     child.stderr.on('data', function (data) {
         console.log('stderr: ', data);
     });
+
+    function test () {
+        child.stdin.write('y\n');
+    }
 
     // child.stdin.end();
 
@@ -226,7 +232,7 @@ describe.only('AEproject Init', () => {
         assert.isTrue(fs.existsSync(`${ executeOptions.cwd }${ constants.testsFiles.gitIgnoreFile }`), "git ignore file doesn't exist");
     });
 
-    it('Should update project successfully 2', async () => {
+    it.only('Should update project successfully 2', async () => {
         await execute(constants.cliCommands.INIT, [], executeOptions)
 
         // Arrange

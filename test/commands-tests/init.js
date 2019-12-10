@@ -134,23 +134,11 @@ const executeAndPassInput = async (cli, command, args = [], options = {}) => {
             //     child.stdin.write('y\n');
                 
             // }, 1000)
-
-            // console.log(667)
         }
     });
 
-    let error = '';
     child.stderr.on('data', function (data) {
-        console.log('stdout: ', data);
-        error += data
-        if (data.includes('Do you want to overwrite')) {
-            setTimeout(function () {
-                child.stdin.write('y\n');
-                
-            }, 1000)
-
-            console.log(667)
-        }
+        console.log('stderr: ', data);
     });
 
     // child.stdin.end();

@@ -150,7 +150,7 @@ const executeAndPassInput = async (cli, command, args = [], options = {}) => {
 
 };
 
-describe('AEproject Init', () => {
+describe.only('AEproject Init', () => {
     beforeEach(async () => {
         fs.ensureDirSync(`.${ constants.initTestsFolderPath }`);
         console.log('>> before each');
@@ -227,7 +227,7 @@ describe('AEproject Init', () => {
         assert.isTrue(fs.existsSync(`${ executeOptions.cwd }${ constants.testsFiles.gitIgnoreFile }`), "git ignore file doesn't exist");
     });
 
-    it.only('Should update project successfully', async () => {
+    it('Should update project successfully', async () => {
         await execute(constants.cliCommands.INIT, [], executeOptions)
 
         // Arrange
@@ -296,7 +296,7 @@ describe('AEproject Init', () => {
         
     });
 
-    it.only('Should terminate init process and re-inited project successfully', async () => {
+    it('Should terminate init process and re-inited project successfully', async () => {
 
         let expectedResult = [
             `===== Installing aepp-sdk =====`,

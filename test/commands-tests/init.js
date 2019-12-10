@@ -149,14 +149,15 @@ const executeAndPassInput = async (cli, command, args = [], options = {}) => {
     function test () {
         child.stdin.write('y\n');
     }
-    let x = 2000;
-    let y = setTimeout(function () {
+
+    let z = 0
+    let y = setInterval(function () {
         child.stdin.write('y\n');
-        x += 2000
-        if (x > 20000) {
-            clearTimeout(y)
+        z++
+        if (z > 50) {
+            clearInterval(y)
         }
-    }, x)
+    }, 5000)
 
     // child.stdin.end();
 

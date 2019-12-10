@@ -12,6 +12,9 @@ let executeOptions = {
     cwd: process.cwd() + constants.initTestsFolderPath
 };
 
+console.log('>> executeOptions');
+console.log(executeOptions);
+
 chai.use(chaiFiles);
 
 const {

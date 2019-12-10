@@ -149,7 +149,8 @@ const executeAndPassInput = async (cli, command, args = [], options = {}) => {
 
 describe('AEproject Init', () => {
     beforeEach(async () => {
-        fs.ensureDirSync(`.${ constants.initTestsFolderPath }`)
+        fs.ensureDirSync(`.${ constants.initTestsFolderPath }`);
+        console.log('>> before each');
     });
 
     it('Should init project successfully', async () => {
@@ -350,5 +351,6 @@ describe('AEproject Init', () => {
     // 
     afterEach(async () => {
         fs.removeSync(`.${ constants.initTestsFolderPath }`);
+        console.log('>> after each');
     })
 })

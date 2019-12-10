@@ -147,7 +147,6 @@ const executeAndPassInput = async (cli, command, args = [], options = {}) => {
     // child.stdin.end();
 
     return child;
-
 };
 
 describe.only('AEproject Init', () => {
@@ -227,7 +226,7 @@ describe.only('AEproject Init', () => {
         assert.isTrue(fs.existsSync(`${ executeOptions.cwd }${ constants.testsFiles.gitIgnoreFile }`), "git ignore file doesn't exist");
     });
 
-    it('Should update project successfully', async () => {
+    it('Should update project successfully 2', async () => {
         await execute(constants.cliCommands.INIT, [], executeOptions)
 
         // Arrange
@@ -296,7 +295,7 @@ describe.only('AEproject Init', () => {
         
     });
 
-    it('Should terminate init process and re-inited project successfully', async () => {
+    it.only('Should terminate init process and re-inited project successfully', async () => {
 
         let expectedResult = [
             `===== Installing aepp-sdk =====`,

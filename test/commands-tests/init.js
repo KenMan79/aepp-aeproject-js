@@ -278,7 +278,7 @@ describe('AEproject Init', () => {
         }
     });
 
-    it.only("Should update docker-compose.compiler.yml and use user's compiler version ", async () => {
+    xit("Should update docker-compose.compiler.yml and use user's compiler version ", async () => {
         const compilerImage = 'aeternity/aesophia_http';
         const newerCompilerVersion = `${ compilerImage }:v${ increaseVersion(compilerVersion.split(':')[1]) }`;
 

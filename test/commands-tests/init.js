@@ -43,19 +43,17 @@ const executeAndKill = async (cli, command, args = [], options = {}) => {
     }
 };
 
-function executeAndPassInput (cli, command, subcommand, inputParams = [], options = {}) {
+function executeAndPassInput(cli, command, subcommand, inputParams = [], options = {}) {
     let result = '';
 
     return new Promise((resolve, reject) => {
         let timeout = 1000;
         var child = spawn(cli, [command, subcommand], options);
-        
+
         child.stdout.on('data', (data) => {
             result += data;
-            console.log(result);
-            
-            if (data.includes('AEproject was successfully updated!') || data.includes('AEproject was successfully initialized')) {
-                console.log('5. resolving');
+
+            if (data.includes('AEproject was successfully updated') || data.includes('AEproject was successfully initialized')) {
                 resolve(result)
             }
         });
@@ -67,11 +65,9 @@ function executeAndPassInput (cli, command, subcommand, inputParams = [], option
         for (let param in inputParams) {
             setTimeout(() => {
                 child.stdin.write(inputParams[param]);
-                console.log(`${ param } here`);
-                
             }, timeout);
 
-            timeout += 1000;
+            timeout += 2000;
         }
     });
 }
@@ -320,6 +316,6 @@ describe('AEproject Init', () => {
     });
 
     afterEach(async () => {
-        await fs.removeSync(`.${ constants.initTestsFolderPath }`);
+        fs.removeSync(`.${ constants.initTestsFolderPath }`);
     })
 })

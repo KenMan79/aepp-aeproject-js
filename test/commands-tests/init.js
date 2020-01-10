@@ -303,7 +303,7 @@ describe('AEproject Init', () => {
         // await executeAndPassInput('aeproject', constants.cliCommands.INIT, constants.cliCommandsOptions.UPDATE, ['y\n', 'y\n', 'y\n'], executeOptions)
         console.log('6. after resolving');
         
-        doc = yaml.safeLoad(fs.readFileSync(compilerDockerComposePath, 'utf8'));
+        doc = await yaml.safeLoad(fs.readFileSync(compilerDockerComposePath, 'utf8'));
         for (let i in doc.services) {
             let image = doc.services[i].image;
 

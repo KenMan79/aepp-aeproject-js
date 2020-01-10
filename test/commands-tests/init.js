@@ -308,12 +308,14 @@ describe('AEproject Init', () => {
             let image = doc.services[i].image;
 
             if (image.startsWith(compilerImage)) {
+                console.log('in assertion');
+                
                 assert.isOk(newerCompilerVersion === image, "Mismatch of compiler's version");
             }
         }
     });
 
     afterEach(async () => {
-        fs.removeSync(`.${ constants.initTestsFolderPath }`);
+        await fs.removeSync(`.${ constants.initTestsFolderPath }`);
     })
 })

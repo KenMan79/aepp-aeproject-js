@@ -56,7 +56,6 @@ function executeAndPassInput (cli, command, subcommand, inputParams = [], option
             
             if (data.includes('AEproject was successfully updated!') || data.includes('AEproject was successfully initialized')) {
                 console.log('5. resolving');
-                process.kill(child.pid);
                 resolve(result)
             }
         });
@@ -68,7 +67,7 @@ function executeAndPassInput (cli, command, subcommand, inputParams = [], option
                 
             }, timeout);
 
-            timeout += 3000;
+            timeout += 1000;
         }
     });
 }

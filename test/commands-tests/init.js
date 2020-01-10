@@ -52,8 +52,9 @@ function executeAndPassInput (cli, command, subcommand, inputParams = [], option
         
         child.stdout.on('data', (data) => {
             result += data;
-
-            if (data.includes('AEproject was successfully updated') || data.includes('AEproject was successfully initialized')) {
+            console.log(result);
+            
+            if (data.includes('AEproject was successfully updated!') || data.includes('AEproject was successfully initialized')) {
                 console.log('5. resolving');
                 resolve(result)
             }
@@ -299,7 +300,7 @@ describe('AEproject Init', () => {
         fs.writeFileSync(compilerDockerComposePath, yamlStr, 'utf8');
 
         await executeAndPassInput('aeproject', constants.cliCommands.INIT, constants.cliCommandsOptions.UPDATE, ['y\n', 'y\n', 'y\n', 'y\n'], executeOptions);
-
+        await executeAndPassInput('aeproject', constants.cliCommands.INIT, constants.cliCommandsOptions.UPDATE, ['y\n', 'y\n', 'y\n'], executeOptions)
         console.log('6. after resolving');
         
         doc = yaml.safeLoad(fs.readFileSync(compilerDockerComposePath, 'utf8'));

@@ -18,7 +18,7 @@ let executeOptions = {
     cwd: process.cwd() + constants.testTestsFolderPath
 };
 
-describe('AEproject Test', () => {
+describe.only('AEproject Test', () => {
 
     const nodeCWD = path.resolve(process.cwd(), constants.nodeDockerFilesFolderPath);
     const prevCWD = executeOptions.cwd;

@@ -54,6 +54,7 @@ function executeAndPassInput (cli, command, subcommand, inputParams = [], option
             result += data;
 
             if (data.includes('AEproject was successfully updated') || data.includes('AEproject was successfully initialized')) {
+                console.log('5. resolving');
                 resolve(result)
             }
         });
@@ -61,9 +62,11 @@ function executeAndPassInput (cli, command, subcommand, inputParams = [], option
         for (let param in inputParams) {
             setTimeout(() => {
                 child.stdin.write(inputParams[param]);
+                console.log(`${ param } here`);
+                
             }, timeout);
 
-            timeout += 2000;
+            timeout += 3000;
         }
     });
 }
@@ -297,6 +300,8 @@ describe('AEproject Init', () => {
 
         await executeAndPassInput('aeproject', constants.cliCommands.INIT, constants.cliCommandsOptions.UPDATE, ['y\n', 'y\n', 'y\n', 'y\n'], executeOptions);
 
+        console.log('6. after resolving');
+        
         doc = yaml.safeLoad(fs.readFileSync(compilerDockerComposePath, 'utf8'));
         for (let i in doc.services) {
             let image = doc.services[i].image;

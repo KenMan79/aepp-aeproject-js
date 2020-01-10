@@ -60,6 +60,10 @@ function executeAndPassInput (cli, command, subcommand, inputParams = [], option
             }
         });
 
+        child.stderr.on('data', (data) => {
+            console.log('err', data.toString('utf8'));
+        });
+
         for (let param in inputParams) {
             setTimeout(() => {
                 child.stdin.write(inputParams[param]);
